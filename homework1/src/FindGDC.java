@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Math;
 
 public class FindGDC {
     private int m;
@@ -7,11 +8,30 @@ public class FindGDC {
     private int[] prime;
     
     public FindGDC(int m, int n) {
-        this.m = m;
-        this.n = n;
+        this.m = Math.abs(m);
+        this.n = Math.abs(n);
     }
 
+    // private checkInput(){
+    //     if(m == 0 && n == 0){
+    //         return 0;
+    //     }else if(m == 0){
+    //         return n;
+    //     }else if(n == 0){
+    //         return m;
+    //     }
+    // }
+
     public int sol1() {
+        // check input whether m or n == 0
+        if(m == 0 && n == 0){
+            return 0;
+        }else if(m == 0){
+            return n;
+        }else if(n == 0){
+            return m;
+        }
+
         int ans=1;
         int[] set1=NaiveSolution(m);
         int[] set2=NaiveSolution(n);
@@ -27,7 +47,16 @@ public class FindGDC {
     }
 
     public int sol2() {
-         int ans=1;
+        // check input whether m or n == 0
+        if(m == 0 && n == 0){
+            return 0;
+        }else if(m == 0){
+            return n;
+        }else if(n == 0){
+            return m;
+        }
+
+        int ans=1;
         int[] set1=SieveOfEratosthenes(m);
         int[] set2=SieveOfEratosthenes(n);
         for (int i = 0; i < set1.length; i++) {
@@ -42,9 +71,15 @@ public class FindGDC {
     }
 
     public int sol3() {
-        if (n == 0) {
+        // check input whether m or n == 0
+        if(m == 0 && n == 0){
+            return 0;
+        }else if(m == 0){
+            return n;
+        }else if(n == 0){
             return m;
         }
+
         if (m % n == 0) {
             return n;
         }
