@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        FindGDC a = new FindGDC(30000, 1000000);
+        FindGDC a = new FindGDC(12,34);
 
         long start1 = System.nanoTime();
         System.out.println("NaiveSolution : "+a.sol1());

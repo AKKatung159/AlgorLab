@@ -30,6 +30,7 @@ public class FindGDC {
             for (int j = 0; j < set2.length; j++) {
                 if (set1[i] == set2[j]) {
                     ans *= set1[i];
+                    set2[j] = -1;
                     break;
                 }
             }
@@ -39,9 +40,7 @@ public class FindGDC {
 
     public int sol2() {
         // check input whether m or n == 0
-        if (m == 0 && n == 0) {
-            return 0;
-        } else if (m == 0) {
+        if (m == 0) {
             return n;
         } else if (n == 0) {
             return m;
@@ -54,6 +53,7 @@ public class FindGDC {
             for (int j = 0; j < set2.length; j++) {
                 if (set1[i] == set2[j]) {
                     ans *= set1[i];
+                    set2[j] = -1;
                     break;
                 }
             }
@@ -63,20 +63,22 @@ public class FindGDC {
 
     public int sol3() {
         // check input whether m or n == 0
-        if (m == 0 && n == 0) {
-            return 0;
-        } else if (m == 0) {
+        if (m == 0) {
             return n;
         } else if (n == 0) {
             return m;
         }
 
+        // check m%n == 0
         if (m % n == 0) {
             return n;
         }
+        // swap n=n m=m%n
         if (m > n) {
             m = m % n;
-        } else {
+        }
+        // swap n=m m=n%m
+        else {
             int temp = m;
             m = n % m;
             n = temp;
@@ -87,6 +89,7 @@ public class FindGDC {
     public int[] NaiveSolution(int num) {
         List<Integer> set = new ArrayList<>();
         int factor = 2;
+        // divide num with 2 until can't do and +=1
         while (num > 1) {
             if (num % factor == 0) {
                 set.add(factor);
@@ -95,6 +98,7 @@ public class FindGDC {
                 factor++;
             }
         }
+        // convert list to array
         int[] ans = new int[set.size()];
         for (int i = 0; i < set.size(); i++) {
             ans[i] = set.get(i);
@@ -103,6 +107,7 @@ public class FindGDC {
     }
 
     public int[] SieveOfEratosthenes(int num) {
+        // get prime array when start or num is larger than prime
         if (prime == null || prime.get(prime.size() - 1) < num) {
             boolean[] isPrime = new boolean[num + 1];
             Arrays.fill(isPrime, true);
@@ -123,7 +128,7 @@ public class FindGDC {
                 }
             }
         }
-
+        // divide num with prime from SieveOfEratosthens
         List<Integer> factors = new ArrayList<>();
         for (Integer p : prime) {
             while (num % p == 0) {
@@ -134,7 +139,7 @@ public class FindGDC {
                 break;
             }
         }
-
+        // convert list toarray
         int[] result = new int[factors.size()];
         for (int i = 0; i < factors.size(); i++) {
             result[i] = factors.get(i);
