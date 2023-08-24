@@ -128,7 +128,7 @@ public class FindGDC {
                 }
             }
         }
-        // divide num with prime from SieveOfEratosthens
+        // divide num with prime from SieveOfEratosthenes
         List<Integer> factors = new ArrayList<>();
         for (Integer p : prime) {
             while (num % p == 0) {
@@ -139,7 +139,7 @@ public class FindGDC {
                 break;
             }
         }
-        // convert list toarray
+        // convert list to array
         int[] result = new int[factors.size()];
         for (int i = 0; i < factors.size(); i++) {
             result[i] = factors.get(i);
