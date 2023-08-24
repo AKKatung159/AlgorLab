@@ -1,16 +1,15 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Stack;
 
 public class Graph {
     private int[][] graph;
     public List<List<Integer>> path;
     public List<List<Integer>> allPath;
 
-    //กำหนดค่าให้ graph และ รีเซ็ตค่าเป็น 0
+    // กำหนดค่าให้ graph และ รีเซ็ตค่าเป็น 0
     public Graph(int[][] graph) {
         this.graph = graph;
         this.path = new ArrayList<>();
@@ -20,7 +19,6 @@ public class Graph {
     public void findPath(int u, int v, boolean[] isVisit, List<Integer> path) {
         isVisit[u] = true;
         path.add(u);
-        int h = 0;
         if (u == v) {
             addAllPath(path);
         } else {
@@ -29,7 +27,7 @@ public class Graph {
                 if (x != 0 && !isVisit[i]) {
                     while (x > 0) {
                         findPath(i, v, isVisit, path);
-                        x -= 1;
+                        x =0;
                     }
                 }
             }
@@ -37,18 +35,66 @@ public class Graph {
         path.remove(path.size() - 1);
         isVisit[u] = false;
     }
-    //แสดง graph
+
+//     public void findPath(int u, int v) {
+//     class State {
+//         int vertex;
+//         int nextIndex;
+//         public State(int vertex) {
+//             this.vertex = vertex;
+//             this.nextIndex = 0;
+//         }
+//     }
+
+//     boolean[] isVisit = new boolean[graph.length];
+//     List<Integer> path = new ArrayList<>();
+//     Stack<State> stack = new Stack<>();
+//     stack.push(new State(u));
+
+//     while (!stack.isEmpty()) {
+//         State currentState = stack.peek();
+//         int currentVertex = currentState.vertex;
+
+//         if (currentVertex == v) {
+//             addAllPath(path);
+//             stack.pop();
+//             if(!stack.isEmpty()) path.remove(path.size() - 1);
+//             continue;
+//         }
+
+//         if (currentState.nextIndex < graph[currentVertex].length) {
+//             int nextVertex = currentState.nextIndex;
+//             currentState.nextIndex++;
+//             int x = graph[currentVertex][nextVertex];
+//             if (x != 0 && !isVisit[nextVertex]) {
+//                 isVisit[nextVertex] = true;
+//                 path.add(nextVertex);
+//                 stack.push(new State(nextVertex));
+//             }
+//         } else {
+//             stack.pop();
+//             if (!stack.isEmpty()) {
+//                 isVisit[currentVertex] = false;
+//                 path.remove(path.size() - 1);
+//             }
+//         }
+//     }
+// }
+
+
+    // แสดง graph
     public void printGraph() {
         for (int[] i : graph) {
             System.out.println(Arrays.toString(i));
         }
     }
-    //สร้าง path จากจุด u ไป v
+
+    // สร้าง path จากจุด u ไป v
     public List<List<Integer>> getPath(int u, int v) {
         this.allPath = new ArrayList<>();
         boolean[] visit = new boolean[graph.length];
         List<Integer> path = new ArrayList<>();
-        findPath(u, v, visit, path);
+        findPath(u, v,visit,path);
         return this.allPath;
     }
 
@@ -80,7 +126,7 @@ public class Graph {
             }
         }
         if (c == 0) {
-            System.out.println("Not have Hamiltonian path/cycle");
+            System.out.println("Doesn't have Hamiltonian path/cycle");
         }
     }
 
@@ -89,7 +135,7 @@ public class Graph {
         for (int u = 0; u < graph.length; u++) {
             for (int v = 0; v < graph.length; v++) {
                 allPath.addAll(getPath(u, v));
-                path.addAll(allPath); // Assuming deep copy here, as was done in Python
+                path.addAll(allPath);
                 for (List<Integer> path : allPath) {
                     if (path.size() == graph.length) {
                         if (graph[v][u] != 0) {
@@ -103,7 +149,7 @@ public class Graph {
             }
         }
         if (c == 0) {
-            System.out.println("Not have Hamiltonian path/cycle");
+            System.out.println("Doesn't have Hamiltonian path/cycle");
             findAndCompleteCycle();
         }
         return c;
@@ -132,21 +178,33 @@ public class Graph {
         System.out.println(pathList);
         System.out.println("Have to connect:");
         for (int i = 0; i < pathList.size() - 1; i++) {
-            System.out.println(pathList.get(i).get(pathList.get(i).size() - 1) + " " + pathList.get(i + 1).get(0));
+            System.out.print (pathList.get(i).get(pathList.get(i).size() - 1) + " " + pathList.get(i + 1).get(0)+" and ");
         }
         System.out.println(pathList.get(0).get(0) + " "
                 + pathList.get(pathList.size() - 1).get(pathList.get(pathList.size() - 1).size() - 1));
-        System.out.println("to have Hamiltonian cycle.");
+        System.out.println("to create Hamiltonian cycle.");
     }
 
     private boolean containsAllIntegersOnce(List<Integer> array, int v) {
-        Set<Integer> set = new HashSet<>(array);
-        for (int i = 0; i < v; i++) {
-            if (!set.remove(i)) {
+        if (array.size() != v) {
+            return false;
+        }
+
+        boolean[] numbersPresent = new boolean[v];
+        for (int num : array) {
+            if (num < 0 || num >= v || numbersPresent[num]) {
+                return false;
+            }
+            numbersPresent[num] = true;
+        }
+
+        for (boolean isPresent : numbersPresent) {
+            if (!isPresent) {
                 return false;
             }
         }
-        return set.isEmpty();
+
+        return true;
     }
 
     public void displayCycle() {

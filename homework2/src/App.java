@@ -30,14 +30,15 @@ public class App {
         } catch (Exception e) {
             System.out.println("Done");
         }
-        int check =2;
-        graphs[check].printGraph();
+        int check = 3;
+        System.out.println(graphs[check].toString());
+        // graphs[check].printGraph();
         graphs[check].hamilCheck();
         // graphs[3].forestGump();
         // graphs[check].printAllPaths();
-        System.out.println(graphs[check].toString());
-        graphs[check].findAndCompleteCycle();
+
+        // graphs[check].findAndCompleteCycle();
         System.out.println(graphs[check].path);
-        System.out.println(graphs[check].allPath);
+        // System.out.println(graphs[check].allPath);
     }
 }
