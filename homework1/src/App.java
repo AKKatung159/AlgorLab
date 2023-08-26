@@ -12,7 +12,7 @@ public class App {
             FindGDC a = new FindGDC(test[i], test[i + 1]);
             long start1 = System.nanoTime();
             // System.out.println("NaiveSolution : " + a.sol1());
-            a.sol2();
+            a.sol3();
             long finish1 = System.nanoTime();
             long timeElapsed1 = finish1 - start1;
             System.out.println("" + timeElapsed1 + "");

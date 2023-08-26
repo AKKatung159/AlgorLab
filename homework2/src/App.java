@@ -8,8 +8,8 @@ public class App {
             int index = 1;
             while (true) {
                 String testCase = "";
-                // File fileTest = new File("./testCase/1.Regular/2.1." + index + ".txt");
-                File fileTest = new File("./testCase/2.Extra/2.2." + index + ".txt");
+                // File fileTest = new File("./testCase/Regular/2.1." + index + ".txt");
+                File fileTest = new File("./testCase/Extra/2.2." + index + ".txt");
                 try (Scanner idk = new Scanner(fileTest)) {
                     while (idk.hasNextLine()) {
                         testCase += idk.nextLine() + "\n";
@@ -30,7 +30,7 @@ public class App {
         } catch (Exception e) {
             System.out.println("Done");
         }
-        int check = 3;
+        int check = 5;
         System.out.println(graphs[check].toString());
         // graphs[check].printGraph();
         graphs[check].hamilCheck();
