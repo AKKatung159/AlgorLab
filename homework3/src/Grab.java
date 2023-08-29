@@ -15,11 +15,12 @@ public class Grab {
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] == 'G' && !taken[i]) {
+                // System.out.println("i"+i);
                 for (int j = Math.max(0, i - k); j < Math.min(array.length, i + k + 1); j++) {
+                    // System.out.println("j"+j);
                     if (array[j] == 'P' && !taken[j]) {
                         taken[i] = true;
                         taken[j] = true;
-                        i = j;
                         count++;
                         break;
                     }
@@ -28,10 +29,12 @@ public class Grab {
         }
         return count;
     }
-    public int bruteForceEntry(){
-        boolean[] taken=new boolean[array.length];
+
+    public int bruteForceEntry() {
+        boolean[] taken = new boolean[array.length];
         return bruteForceSol(array, k, 0, 0, taken);
     }
+
     public int bruteForceSol(Character[] arr, int k, int index, int count, boolean[] taken) {
         if (index >= arr.length) {
             return count;
@@ -40,6 +43,8 @@ public class Grab {
         int maxCount = count;
 
         if (arr[index] == 'G') {
+            maxCount = Math.max(maxCount, bruteForceSol(arr, k, index + 1, count, taken));
+
             for (int i = Math.max(0, index - k); i <= Math.min(arr.length - 1, index + k); i++) {
                 if (arr[i] == 'P' && !taken[i]) {
                     taken[i] = true;
