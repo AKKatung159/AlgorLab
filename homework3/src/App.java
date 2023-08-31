@@ -9,10 +9,10 @@ public class App {
             while (true) {
                 Character[] tmpArray;
                 int tempK;
-                File fileTest = new File("./testCase/normal/3.1." + index + ".txt");
+                // File fileTest = new File("./testCase/normal/3.1." + index + ".txt");
                 // File fileTest = new File("./testCase/normal/3.2." + index + ".txt");
                 // File fileTest = new File("./testCase/normal/3.3." + index + ".txt");
-                // File fileTest = new File("./testCase/Extra/3.4." + index + ".txt");
+                File fileTest = new File("./testCase/Extra/3.4." + index + ".txt");
                 // File fileTest = new File("./testCase/Extra/3.5." + index + ".txt");
                 Scanner inputScanner = new Scanner(fileTest);
                 String data = inputScanner.nextLine();
