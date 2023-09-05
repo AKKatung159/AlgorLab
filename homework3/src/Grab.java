@@ -73,6 +73,7 @@ public class Grab {
             for (int i = Math.max(0, index - k); i <= Math.min(arr.length - 1, index + k); i++) {
                 if (arr[i] == 'P' && !taken[i]) {
                     taken[i] = true;
+                    System.out.println("Match index "+index+":"+i);
                     maxCount = Math.max(maxCount, bruteForceSol(arr, k, index + 1, count + 1, taken));
                     taken[i] = false;
                 }

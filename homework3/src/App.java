@@ -12,8 +12,8 @@ public class App {
                 // File fileTest = new File("./testCase/normal/3.1." + index + ".txt");
                 // File fileTest = new File("./testCase/normal/3.2." + index + ".txt");
                 // File fileTest = new File("./testCase/normal/3.3." + index + ".txt");
-                File fileTest = new File("./testCase/Extra/3.4." + index + ".txt");
-                // File fileTest = new File("./testCase/Extra/3.5." + index + ".txt");
+                // File fileTest = new File("./testCase/Extra/3.4." + index + ".txt");
+                File fileTest = new File("./testCase/Extra/3.5." + index + ".txt");
                 Scanner inputScanner = new Scanner(fileTest);
                 String data = inputScanner.nextLine();
                 tempK = inputScanner.nextInt();
@@ -32,9 +32,9 @@ public class App {
         }
         for (int i = 0; i < grabs.length; i++) {
             if (grabs[i] != null) {
-                System.out.println(grabs[i]);
-                System.out.println("Greedy output :\t" + grabs[i].greedySol());
-                System.out.println("Brute force output :\t" + grabs[i].bruteForceEntry());
+                System.out.println(grabs[0]);
+                System.out.println("Greedy output :\t" + grabs[0].greedySol());
+                System.out.println("Brute force output :\t" + grabs[0].bruteForceEntry());
             }
         }
     }
