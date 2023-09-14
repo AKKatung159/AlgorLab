@@ -35,7 +35,24 @@ public class App {
         }
         for (Triangulation triangulation : triangulations) {
             System.out.println(triangulation);
-            System.out.println("====================================");
+            // System.out.println("====================================");
         }
     }
 }
+//Minimum cost : 41.546303
+// Minimum cost : 89.70813
+// Minimum cost : 57.606106
+// Minimum cost : 52.33978
+// Minimum cost : 27.275375
+// Minimum cost : 15.772699
+// Minimum cost : 89.480644
+// Minimum cost : 365.84393
+
+// Minimum cost : 41.546303
+// Minimum cost : 89.70813
+// Minimum cost : 57.606102
+// Minimum cost : 52.33978
+// Minimum cost : 27.275375
+// Minimum cost : 15.300563
+// Minimum cost : 89.48064
+// Minimum cost : 389.59402
