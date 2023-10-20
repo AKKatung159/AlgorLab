@@ -8,7 +8,7 @@ public class App {
         int[][] Graph;
         Graph[] Graphs = new Graph[10];
         try {
-            File file = new File("src/testCase/example.txt");
+            File file = new File("src/testCase/6.1.txt");
             Scanner inputScanner = new Scanner(file);
             int i = 0;
             while (inputScanner.hasNextLine()) {
@@ -42,7 +42,8 @@ public class App {
         }
         for (int i = 0; i < 3; i++) {
             System.out.print(Graphs[i]);
-            System.out.println("Answer : "+Graphs[i].isStronglyConnected()+"\n");
+            System.out.print("Answer : "+Graphs[i].isStronglyConnected()+"\n");
+            System.out.print(Graphs[i].findCyclePath()+"\n");
         }
     }
 }
