@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Stack;
 
 public class Graph {
     private int[][] adjacencyMatrix;
@@ -27,6 +29,20 @@ public class Graph {
 
         return 1;
     }
+    // public int howManyComponents() {
+    //     int count =0;
+    //     for (int i = 0; i < adjacencyMatrix.length; i++) {
+    //         if(isAllVerticesVisited(i)){
+    //             transposeMatrix();
+    //              if(isAllVerticesVisited(i)){
+    //             count++;
+    //         }
+    //         }
+            
+    //     }
+
+    //     return count;
+    // }
 
     private boolean isAllVerticesVisited() {
         boolean[] visited = new boolean[adjacencyMatrix.length];
@@ -38,6 +54,17 @@ public class Graph {
         }
         return true;
     }
+    // private boolean isAllVerticesVisited(int i) {
+    //     boolean[] visited = new boolean[adjacencyMatrix.length];
+    //     dfs(i, visited);
+    //     for (boolean v : visited) {
+    //         if (!v) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+    
     
     private String printCyclePath() {
         StringBuilder sb = new StringBuilder();
@@ -76,4 +103,45 @@ public class Graph {
         dfs(0, visited);
         return printCyclePath();
     }
+    public int howManyComponents() {
+    int componentCount = 0;
+    boolean[] visited = new boolean[adjacencyMatrix.length];
+    Stack<Integer> stack = new Stack<>();
+    
+    // First DFS to fill the stack
+    for (int i = 0; i < adjacencyMatrix.length; i++) {
+        if (!visited[i]) {
+            dfsForStack(i, visited, stack);
+        }
+    }
+
+    // Reset visited array for second DFS
+    Arrays.fill(visited, false);
+    
+    // Transpose the graph
+    transposeMatrix();
+
+    // Second DFS on transposed graph
+    while (!stack.isEmpty()) {
+        int vertex = stack.pop();
+        if (!visited[vertex]) {
+            dfs(vertex, visited); // You might need another dfs method if cyclePath is not needed.
+            componentCount++;
+        }
+    }
+    
+    return componentCount;
+}
+
+private void dfsForStack(int vertex, boolean[] visited, Stack<Integer> stack) {
+    visited[vertex] = true;
+    for (int i = 0; i < adjacencyMatrix.length; i++) {
+        if (adjacencyMatrix[vertex][i] == 1 && !visited[i]) {
+            dfsForStack(i, visited, stack);
+        }
+    }
+    stack.push(vertex);
+}
+
+
 }
