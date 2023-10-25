@@ -42,8 +42,8 @@ public class App {
         }
         for (int i = 0; i < 4; i++) {
             System.out.print(Graphs[i]);
-            System.out.print("Answer : "+Graphs[i].isStronglyConnected()+"\n");
-            System.out.println("Number of component : "+Graphs[i].howManyComponents());
+            // System.out.print("Answer : "+Graphs[i].isStronglyConnected()+"\n");
+            // System.out.println("Number of component : "+Graphs[i].howManyComponents());
             // System.out.print(Graphs[i].findCyclePath()+"\n");
         }
     }
