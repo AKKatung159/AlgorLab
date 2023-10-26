@@ -30,11 +30,15 @@ public class Graph {
                 next[i][j] = (noise[i][j] != Integer.MAX_VALUE) ? j : -1;
             }
         }
+        //set noise maxValue if there is no path between two towns
+        //set next -1 if there is no path between two towns
 
         for (int k = 0; k < adjacencyMatrix.length; k++) {
             for (int i = 0; i < adjacencyMatrix.length; i++) {
                 for (int j = 0; j < adjacencyMatrix.length; j++) {
                     int alternativePathNoise = Math.max(noise[i][k], noise[k][j]);
+                    //เลือกค่ามากสุดจากทั้งสองเส้นทาง i-k, k-j
+                    //เลือกเส้นทางที่มีค่า noise น้อยที่สุด
                     if (alternativePathNoise < noise[i][j]) {
                         noise[i][j] = alternativePathNoise;
                         next[i][j] = next[i][k];
@@ -68,5 +72,25 @@ public class Graph {
             path.add(u+1);
         }
         return path;
+    }
+    public String printNoise(){
+        StringBuilder result = new StringBuilder();
+        for (int[] row : findQuietestPaths()) {
+            for (int cell : row) {
+                result.append(cell).append("\t");
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+    public String printNext(){
+        StringBuilder result = new StringBuilder();
+        for (int[] row : next) {
+            for (int cell : row) {
+                result.append(cell+1).append("\t");
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 }

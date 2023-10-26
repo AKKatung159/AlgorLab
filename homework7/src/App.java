@@ -10,7 +10,7 @@ public class App {
         int[][] Graph;
         int[][] ans=null;
         try{
-            File file = new File("src/testCase/example.txt");
+            File file = new File("src/testCase/7.1.txt");
             Scanner sc = new Scanner(file);
             numOfTown=sc.nextInt();
             numOfRoad=sc.nextInt();
@@ -41,5 +41,7 @@ public class App {
             // System.out.println(g.findQuietestPaths(0, 20));
             System.out.println("Path : "+g.reconstructPath(ans[i][0], ans[i][1])+"\n");
         }
+        System.out.println(g.printNext());
+        System.out.println(g.printNoise());
     }
 }
