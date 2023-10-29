@@ -10,7 +10,7 @@ public class App {
         int[][] Graph;
         int[][] ans=null;
         try{
-            File file = new File("src/testCase/7.1.txt");
+            File file = new File("src/testCase/7_extra1.txt");
             Scanner sc = new Scanner(file);
             numOfTown=sc.nextInt();
             numOfRoad=sc.nextInt();
@@ -21,7 +21,7 @@ public class App {
                 int b = sc.nextInt()-1;
                 int c = sc.nextInt();
                 Graph[a][b] = c;
-                Graph[b][a] = c;
+                // Graph[b][a] = c;
             }
             ans = new int[numOfAns][2];
             for (int i = 0; i < numOfAns; i++) {
