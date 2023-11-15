@@ -14,16 +14,20 @@ public class StringMatching {
         this.numPatterns = numPatterns;
         this.numText = numText;
         this.patterns = patterns;
-        this.text = text;
+        String[] ans =new String[text.length*2];
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = text[i%text.length];
+        };
+        this.text = ans;
     }
 
     public String toString() {
         String patternString = String.join("", patterns);
         String textString = String.join("", text);
-        String reverseTextString = new StringBuilder(textString).reverse().toString();
+        // String reverseTextString = new StringBuilder(textString).reverse().toString();
         kmpMatcher();
         naiveStringMatching();
-        return "Pattern : \t" + patternString + " \nText : \t\t" + textString + "\nReverse Text : \t" + reverseTextString+ "\n";
+        return "Pattern : \t" + patternString + " \nText : \t\t" + "textString" + "\nReverse Text : \t" + "reverseTextString"+ "\n";
     }
 
     public void kmpMatcher() {
@@ -38,7 +42,7 @@ public class StringMatching {
         }
         System.out.println();
         for (int match : matchesLR) {
-            System.out.println((match + 1) + " LR");
+            System.out.println((match + 1)%(textString.length()/2) + " LR");
         }
         String reversedTextString = new StringBuilder(textString).reverse().toString();
 
@@ -46,7 +50,7 @@ public class StringMatching {
         Collections.sort(matchesRL, Collections.reverseOrder());
         for (int match : matchesRL) {
             int matchPosition = textString.length() - match - 1;
-            System.out.println((matchPosition + 1) + " RL");
+            System.out.println((matchPosition + 1)%(textString.length()/2) + " RL");
         }
 
     }
@@ -102,7 +106,7 @@ public class StringMatching {
         List<Integer> matchesLR = naiveSearch(patternString, textString);
 
         for (int match : matchesLR) {
-            System.out.println((match + 1) + " LR");
+            System.out.println((match + 1)%(textString.length()/2) + " LR");
         }
 
         String reversedTextString = new StringBuilder(textString).reverse().toString();
@@ -113,7 +117,7 @@ public class StringMatching {
 
         for (int match : matchesRL) {
             int matchPosition = textString.length() - match-1;
-            System.out.println((matchPosition + 1) + " RL");
+            System.out.println((matchPosition + 1)%(textString.length()/2) + " RL");
         }
     }
 

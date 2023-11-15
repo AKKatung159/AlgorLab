@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         StringMatching sm=null;
         try {
-            File file = new File("src/testCase/example.txt");
+            File file = new File("src/testCase/9.4.txt");
             Scanner sc = new Scanner(file);
 
             String[] setStrings = sc.nextLine().split(" ");
@@ -24,6 +24,7 @@ public class App {
             for (int i = 0; i < numText; i++) {
                 text[i] = sc.next();
             }
+            System.out.println(numText);
             sm = new StringMatching(setStrings, numPatterns, numText, patterns, text);
             sc.close();
         } catch (Exception e) {
@@ -31,4 +32,5 @@ public class App {
         }
         System.out.println(sm);
     }
+
 }
